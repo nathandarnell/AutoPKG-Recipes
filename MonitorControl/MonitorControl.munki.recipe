@@ -12,6 +12,8 @@
         <string>MonitorControl</string>
         <key>MUNKI_REPO_SUBDIR</key>
         <string>apps</string>
+        <key>MUNKI_CATEGORY</key>
+        <string>Communications</string>
         <key>pkginfo</key>
         <dict>
             <key>catalogs</key>
@@ -24,12 +26,12 @@
             <string>MonitorControl</string>
             <key>name</key>
             <string>%NAME%</string>
-            <key>unattended_install</key>
-            <true/>
             <key>category</key>
-            <string>Utilities</string>
+            <string>%MUNKI_CATEGORY%</string>
             <key>developer</key>
             <string>MonitorControl</string>
+            <key>unattended_install</key>
+            <true/>
         </dict>
     </dict>
     <key>MinimumVersion</key>
