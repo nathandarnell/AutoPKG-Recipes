@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Comment</key>
 	<string>Created from https://github.com/autopkg/ahousseini-recipes/blob/master/MonitorControl/MonitorControl.pkg.recipe</string>
-	<key>Description</key>
 	<key>Description</key>
 	<string>Downloads the latest version of displayplacer and creates a package.</string>
 	<key>Identifier</key>
