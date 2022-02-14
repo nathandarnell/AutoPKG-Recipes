@@ -13,7 +13,7 @@
         <key>MUNKI_REPO_SUBDIR</key>
         <string>apps</string>
         <key>MUNKI_CATEGORY</key>
-        <string>Communications</string>
+        <string>Utilities</string>
         <key>pkginfo</key>
         <dict>
             <key>catalogs</key>
