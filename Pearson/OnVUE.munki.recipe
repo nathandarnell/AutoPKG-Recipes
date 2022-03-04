@@ -23,13 +23,17 @@
             <key>description</key>
             <string>OnVUE online proctoring allows you to take your certification exam securely from your home or office.</string>
             <key>display_name</key>
-            <string>OnVUE</string>
+            <string>%NAME%</string>
             <key>name</key>
             <string>%NAME%</string>
             <key>category</key>
             <string>%MUNKI_CATEGORY%</string>
             <key>developer</key>
             <string>Pearson</string>
+            <key>blocking_applications</key>
+			<array>
+				<string>%NAME%</string>
+			</array>
             <key>unattended_install</key>
             <true/>
         </dict>
@@ -37,18 +41,31 @@
     <key>MinimumVersion</key>
     <string>0.2.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.nstrauss.pkg.OnVUE</string>
+    <string>com.github.nstrauss.download.OnVUE</string>
     <key>Process</key>
     <array>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>repo_subdirectory</key>
-                <string>%MUNKI_REPO_SUBDIR%</string>
-            </dict>
-            <key>Processor</key>
-            <string>MunkiImporter</string>
-        </dict>
-    </array>
+		<dict>
+			<key>Processor</key>
+			<string>DmgCreator</string>
+			<key>Arguments</key>
+			<dict>
+				<key>dmg_root</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%</string>
+				<key>dmg_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.dmg</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>pkg_path</key>
+				<string>%dmg_path%</string>
+				<key>repo_subdirectory</key>
+				<string>%MUNKI_REPO_SUBDIR%</string>
+			</dict>
+			<key>Processor</key>
+			<string>MunkiImporter</string>
+		</dict>
+	</array>
 </dict>
 </plist>
