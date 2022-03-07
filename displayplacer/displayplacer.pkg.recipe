@@ -1,80 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>Comment</key>
-	<string>Created from https://github.com/autopkg/ahousseini-recipes/blob/master/MonitorControl/MonitorControl.pkg.recipe</string>
-	<key>Description</key>
-	<string>Downloads the latest version of displayplacer and creates a package.</string>
-	<key>Identifier</key>
-	<string>com.github.nathandarnell-recipes.pkg.displayplacer</string>
-	<key>Input</key>
-	<dict>
-		<key>NAME</key>
-		<string>displayplacer</string>
-	</dict>
-	<key>MinimumVersion</key>
-	<string>1.0.0</string>
-	<key>ParentRecipe</key>
-	<string>com.github.nathandarnell-recipes.download.displayplacer</string>
-	<key>Process</key>
-	<array>
+    <dict>
+        <key>Comment</key>
+        <string>Created from https://github.com/autopkg/ahousseini-recipes/blob/master/MonitorControl/MonitorControl.pkg.recipe</string>
+        <key>Description</key>
+        <string>Downloads the latest version of displayplacer and creates a package.</string>
+        <key>Identifier</key>
+        <string>com.github.nathandarnell-recipes.pkg.displayplacer</string>
+        <key>Input</key>
         <dict>
-            <key>Arguments</key>
+            <key>NAME</key>
+            <string>displayplacer</string>
+        </dict>
+        <key>MinimumVersion</key>
+        <string>1.0.0</string>
+        <key>ParentRecipe</key>
+        <string>com.github.nathandarnell-recipes.download.displayplacer</string>
+        <key>Process</key>
+        <array>
             <dict>
-                <key>pkgdirs</key>
+                <key>Comment</key>
+                <string>Create a pkg root; we'll extract things from the disk image here.</string>
+                <key>Processor</key>
+                <string>PkgRootCreator</string>
+                <key>Arguments</key>
                 <dict>
-                    <key>/usr/local/bin</key>
-                    <string>0775</string>
+                    <key>pkgroot</key>
+                    <string>%RECIPE_CACHE_DIR%/displayplacer</string>
+                    <key>pkgdirs</key>
+                    <dict>
+                        <key>usr</key>
+                        <string>0775</string>
+                        <key>usr/local</key>
+                        <string>0775</string>
+                        <key>usr/local/bin</key>
+                        <string>0775</string>
+                    </dict>
                 </dict>
-                <key>pkgroot</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%</string>
             </dict>
-            <key>Processor</key>
-            <string>PkgRootCreator</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
             <dict>
-                <key>destination_path</key>
-                <string>%pkgroot%/usr/local/bin/displayplacer</string>
-                <key>source_path</key>
-                <string>%pathname%/displayplacer</string>
-            </dict>
-            <key>Processor</key>
-            <string>Copier</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>pkg_request</key>
+                <key>Comment</key>
+                <string>Copy the displayplacer binary</string>
+                <key>Processor</key>
+                <string>Copier</string>
+                <key>Arguments</key>
                 <dict>
-                    <key>chown</key>
-                    <array>
-                        <dict>
-                            <key>group</key>
-                            <string>admin</string>
-                            <key>path</key>
-                            <string>/usr/local/bin</string>
-                            <key>user</key>
-                            <string>root</string>
-                        </dict>
-                    </array>
-                    <key>id</key>
-                    <string>%PKG_ID%</string>
-                    <key>options</key>
-                    <string>purge_ds_store</string>
-                    <key>pkgdir</key>
-                    <string>%RECIPE_CACHE_DIR%</string>
+                    <key>source_path</key>
+                    <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                    <key>destination_path</key>
+                    <string>%pkgroot%/%NAME%</string>
                 </dict>
-                <key>pkgname</key>
-                <string>%NAME%-%version%</string>
-                <key>version</key>
-                <string>%version%</string>
             </dict>
-            <key>Processor</key>
-            <string>PkgCreator</string>
-        </dict>
-	</array>
-</dict>
+
+            <dict>
+                <key>Comment</key>
+                <string>Make PackageInfo file for our package</string>
+                <key>Processor</key>
+                <string>PkgInfoCreator</string>
+                <key>Arguments</key>
+                <dict>
+                    <key>template_path</key>
+                    <string>PackageInfoTemplate</string>
+                    <key>infofile</key>
+                    <string>%RECIPE_CACHE_DIR%/PackageInfo</string>
+                    <key>pkgtype</key>
+                    <string>flat</string>
+                </dict>
+            </dict>
+            <dict>
+                <key>Comment</key>
+                <string>Finally! Build the pkg</string>
+                <key>Processor</key>
+                <string>PkgCreator</string>
+                <key>Arguments</key>
+                <dict>
+                    <key>pkg_request</key>
+                    <dict>
+                        <key>pkgname</key>
+                        <string>%NAME%-%version%</string>
+                        <key>pkgdir</key>
+                        <string>%RECIPE_CACHE_DIR%</string>
+                        <key>id</key>
+                        <string>com.github.pkg.jakehilborn.displayplacer</string>
+                        <key>infofile</key>
+                        <string>%RECIPE_CACHE_DIR%/PackageInfo</string>
+                        <key>resources</key>
+                        <string>Resources</string>
+                        <key>options</key>
+                        <string>purge_ds_store</string>
+                        <key>chown</key>
+                        <array>
+                            <dict>
+                                <key>path</key>
+                                <string>usr</string>
+                                <key>user</key>
+                                <string>root</string>
+                                <key>group</key>
+                                <string>admin</string>
+                            </dict>
+                        </array>
+                    </dict>
+                </dict>
+            </dict>
+        </array>
+    </dict>
 </plist>
