@@ -49,7 +49,7 @@
                     <key>source_path</key>
                     <string>%RECIPE_CACHE_DIR%/downloads/%NAME%-%version%</string>
                     <key>destination_path</key>
-                    <string>%pkgroot%/%NAME%/usr/local/bin/%NAME%</string>
+                    <string>%pkgroot%/usr/local/bin/%NAME%</string>
                 </dict>
             </dict>
 
