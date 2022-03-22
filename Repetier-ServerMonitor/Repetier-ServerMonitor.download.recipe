@@ -12,6 +12,10 @@
 	<dict>
 		<key>NAME</key>
 		<string>Repetier-Server Monitor</string>
+		<key>DOWNLOAD_URL</key>
+        <string>https://www.repetier-server.com/download-repetier-server/</string>
+		<key>SEARCH_PATTERN</key>
+        <string>href="(https://download3\.repetier\.com/files/monitor/mac/Repetier-Server%20Monitor-.*\.dmg)"</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>1.0.0</string>
@@ -23,9 +27,9 @@
             <key>Arguments</key>
             <dict>
                 <key>url</key>
-                <string>https://www.repetier-server.com/download-repetier-server/</string>
+                <string>%DOWNLOAD_URL%</string>
                 <key>re_pattern</key>
-                <string>(?P&lt;url&gt;https:\/\/download3\.repetier\.com\/files\/monitor\/mac\/Repetier-Server%20Monitor-*?\.dmg)</string>
+                <string>%SEARCH_PATTERN%</string>
             </dict>
 		</dict>
 		<dict>
@@ -34,7 +38,7 @@
         	<key>Arguments</key>
         	<dict>
         	   <key>url</key>
-        	   <string>%url%</string>
+        	   <string>%match%</string>
         	   <key>filename</key>
         	   <string>%NAME%.dmg</string>
         	</dict>

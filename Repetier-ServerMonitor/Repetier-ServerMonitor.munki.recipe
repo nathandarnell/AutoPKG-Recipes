@@ -21,7 +21,7 @@
 				<string>testing</string>
 			</array>
 			<key>description</key>
-			<string> </string>
+			<string>Free desktop app to connect multiple Repetier-Server PRO or OEM instances at once with additional functions like easy g-code upload from any slicer, Repetier-Server backup etc.</string>
 			<key>developer</key>
 			<string>Hot-World GmbH &amp; Co. KG</string>
 			<key>display_name</key>
@@ -45,6 +45,8 @@
 				<string>%pathname%</string>
 				<key>repo_subdirectory</key>
 				<string>%MUNKI_REPO_SUBDIR%</string>
+				<key>extract_icon</key>
+				<true />
 			</dict>
 			<key>Processor</key>
 			<string>MunkiImporter</string>
