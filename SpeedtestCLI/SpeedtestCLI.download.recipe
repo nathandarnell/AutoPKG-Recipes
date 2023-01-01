@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>Comment</key>
+		<string>Created from https://github.com/autopkg/ahousseini-recipes/blob/master/MonitorControl/MonitorControl.download.recipe</string>
+		<key>Description</key>
+		<string>Downloads the latest version of displayplacer.</string>
+		<key>Identifier</key>
+		<string>com.github.nathandarnell-recipes.download.SpeedtestCLI</string>
+		<key>Input</key>
+		<dict>
+			<key>NAME</key>
+			<string>SpeedtestCLI</string>
+			<key>DOWNLOAD_URL</key>
+			<string>https://www.speedtest.net/apps/cli</string>
+			<key>SEARCH_PATTERN</key>
+			<string>href=\"(?P&lt;url&gt;https.*?(?P&lt;filename&gt;ookla-speedtest-(?P&lt;version&gt;[\d.]+)-macosx-x86_64.*?\.tgz))\"</string>
+		</dict>
+		<key>MinimumVersion</key>
+		<string>1.0.0</string>
+		<key>Process</key>
+		<array>
+			<dict>
+				<key>Processor</key>
+				<string>URLTextSearcher</string>
+				<key>Arguments</key>
+				<dict>
+					<key>url</key>
+					<string>%DOWNLOAD_URL%</string>
+					<key>re_pattern</key>
+					<string>%SEARCH_PATTERN%</string>
+				</dict>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>URLDownloader</string>
+				<key>Arguments</key>
+				<dict>
+					<key>url</key>
+					<string>%match%</string>
+					<key>filename</key>
+					<string>%NAME%-%version%.tgz</string>
+				</dict>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>Unarchiver</string>
+				<key>archive_path</key>
+				<string>%pathname%</string>
+				<key>destination_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%</string>
+				<key>purge_destination</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>EndOfCheckPhase</string>
+			</dict>
+		</array>
+	</dict>
+</plist>
