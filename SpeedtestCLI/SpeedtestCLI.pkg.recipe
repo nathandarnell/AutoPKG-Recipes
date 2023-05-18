@@ -12,6 +12,8 @@
         <dict>
             <key>NAME</key>
             <string>SpeedtestCLI</string>
+            <key>INSTALL_DIR</key>
+            <string>/opt/speedtest</string>
         </dict>
         <key>MinimumVersion</key>
         <string>1.0.0</string>
@@ -27,20 +29,18 @@
                 <key>Arguments</key>
                 <dict>
                     <key>pkgroot</key>
-                    <string>%RECIPE_CACHE_DIR%/pkg</string>
+                    <string>%RECIPE_CACHE_DIR%/pkgroot</string>
                     <key>pkgdirs</key>
                     <dict>
+                        <key>opt</key>
+                        <string>0775</string>
+                        <key>opt/speedtest</key>
+                        <string>0775</string>
                         <key>usr</key>
                         <string>0775</string>
                         <key>usr/local</key>
                         <string>0775</string>
                         <key>usr/local/bin</key>
-                        <string>0775</string>
-                        <key>usr/share</key>
-                        <string>0775</string>
-                        <key>usr/share/man</key>
-                        <string>0775</string>
-                        <key>usr/share/man/man5</key>
                         <string>0775</string>
                     </dict>
                 </dict>
@@ -55,7 +55,7 @@
                     <key>source_path</key>
                     <string>%RECIPE_CACHE_DIR%/%NAME%/speedtest</string>
                     <key>destination_path</key>
-                    <string>%pkgroot%/usr/local/bin/speedtest</string>
+                    <string>%pkgroot%/opt/speedtest/speedtest</string>
                 </dict>
             </dict>
             <dict>
@@ -68,7 +68,33 @@
                     <key>source_path</key>
                     <string>%RECIPE_CACHE_DIR%/%NAME%/speedtest.5</string>
                     <key>destination_path</key>
-                    <string>%pkgroot%/usr/share/man/man5/speedtest.5</string>
+                    <string>%pkgroot%/opt/speedtest/speedtest.5</string>
+                </dict>
+            </dict>
+            <dict>
+                <key>Comment</key>
+                <string>Symlink /opt/speedtest/speedtest to /usr/local/bin/speedtest</string>
+                <key>Processor</key>
+                <string>Symlinker</string>
+                <key>Arguments</key>
+                <dict>
+                    <key>source_path</key>
+                    <string>/opt/speedtest/speedtest</string>
+                    <key>destination_path</key>
+                    <string>%pkgroot%/usr/local/bin/speedtest</string>
+                </dict>
+            </dict>
+            <dict>
+                <key>Processor</key>
+                <string>FileCreator</string>
+                <key>Arguments</key>
+                <dict>
+                    <key>file_path</key>
+				    <string>%RECIPE_CACHE_DIR%/PackageInfoTemplate</string>
+				    <key>file_content</key>
+				    <string>&lt;?xml version="1.0" encoding="utf-8" standalone="no"?&gt;
+&lt;pkg-info overwrite-permissions="false" followSymLinks="true"/&gt;
+</string>
                 </dict>
             </dict>
 
@@ -80,7 +106,7 @@
                 <key>Arguments</key>
                 <dict>
                     <key>template_path</key>
-                    <string>PackageInfoTemplate</string>
+                    <string>%RECIPE_CACHE_DIR%/PackageInfoTemplate</string>
                     <key>version</key>
                     <string>%version%</string>
                     <key>infofile</key>
@@ -116,11 +142,13 @@
                         <array>
                             <dict>
                                 <key>path</key>
-                                <string>usr</string>
+                                <string>/</string>
                                 <key>user</key>
                                 <string>root</string>
                                 <key>group</key>
                                 <string>admin</string>
+                                <key>mode</key>
+                                <string>0755</string>
                             </dict>
                         </array>
                     </dict>

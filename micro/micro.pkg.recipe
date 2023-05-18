@@ -30,15 +30,13 @@
                     <dict>
                         <key>opt</key>
                         <string>0775</string>
-                        <key>opt/local</key>
+                        <key>opt/micro</key>
                         <string>0775</string>
-                        <key>opt/local/bin</key>
+                        <key>usr</key>
                         <string>0775</string>
-                        <key>opt/share</key>
+                        <key>usr/local</key>
                         <string>0775</string>
-                        <key>opt/share/man</key>
-                        <string>0775</string>
-                        <key>opt/share/man/man1</key>
+                        <key>usr/local/bin</key>
                         <string>0775</string>
                     </dict>
                 </dict>
@@ -53,7 +51,7 @@
                     <key>source_path</key>
                     <string>%RECIPE_CACHE_DIR%/%NAME%/%NAME%-%version%/micro</string>
                     <key>destination_path</key>
-                    <string>%pkgroot%/opt/local/bin/micro</string>
+                    <string>%pkgroot%/opt/micro/micro</string>
                 </dict>
             </dict>
             <dict>
@@ -66,20 +64,33 @@
                     <key>source_path</key>
                     <string>%RECIPE_CACHE_DIR%/%NAME%/%NAME%-%version%/micro.1</string>
                     <key>destination_path</key>
-                    <string>%pkgroot%/opt/share/man/man1/micro.1</string>
+                    <string>%pkgroot%/opt/micro/micro.1</string>
                 </dict>
             </dict>
             <dict>
                 <key>Comment</key>
-                <string>Symlink /Library/AutoPkg/autopkg to /usr/local/bin/autopkg</string>
+                <string>Symlink /opt/micro/micro to /usr/local/bin/micro</string>
                 <key>Processor</key>
                 <string>Symlinker</string>
                 <key>Arguments</key>
                 <dict>
                     <key>source_path</key>
-                    <string>/Library/AutoPkg/autopkg</string>
+                    <string>/opt/micro/micro</string>
                     <key>destination_path</key>
-                    <string>%pkgroot%/usr/local/bin/autopkg</string>
+                    <string>%pkgroot%/usr/local/bin/micro</string>
+                </dict>
+            </dict>
+            <dict>
+                <key>Processor</key>
+                <string>FileCreator</string>
+                <key>Arguments</key>
+                <dict>
+                    <key>file_path</key>
+				    <string>%RECIPE_CACHE_DIR%/PackageInfoTemplate</string>
+				    <key>file_content</key>
+				    <string>&lt;?xml version="1.0" encoding="utf-8" standalone="no"?&gt;
+&lt;pkg-info overwrite-permissions="false" followSymLinks="true"/&gt;
+</string>
                 </dict>
             </dict>
             <dict>
@@ -128,7 +139,7 @@
                         <array>
                             <dict>
                                 <key>path</key>
-                                <string>opt/local/bin/micro</string>
+                                <string>opt/micro/micro</string>
                                 <key>user</key>
                                 <string>root</string>
                                 <key>group</key>
@@ -138,7 +149,7 @@
                             </dict>
                             <dict>
                                 <key>path</key>
-                                <string>opt/share/man/man1/micro.1</string>
+                                <string>opt/micro/micro.1</string>
                                 <key>user</key>
                                 <string>root</string>
                                 <key>group</key>

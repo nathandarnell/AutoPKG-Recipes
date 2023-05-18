@@ -5,7 +5,7 @@
 		<key>Comment</key>
 		<string>Created from https://github.com/autopkg/ahousseini-recipes/blob/master/MonitorControl/MonitorControl.download.recipe</string>
 		<key>Description</key>
-		<string>Downloads the latest version of displayplacer.</string>
+		<string>Downloads the latest version of Speedtest's CLI.</string>
 		<key>Identifier</key>
 		<string>com.github.nathandarnell-recipes.download.SpeedtestCLI</string>
 		<key>Input</key>
@@ -15,7 +15,7 @@
 			<key>DOWNLOAD_URL</key>
 			<string>https://www.speedtest.net/apps/cli</string>
 			<key>SEARCH_PATTERN</key>
-			<string>href=\"(?P&lt;url&gt;https.*?(?P&lt;filename&gt;ookla-speedtest-(?P&lt;version&gt;[\d.]+)-macosx-x86_64.*?\.tgz))\"</string>
+			<string>href=\"(?P&lt;url&gt;https.*?(?P&lt;filename&gt;ookla-speedtest-(?P&lt;version&gt;[\d.]+)-macosx-universal.*?\.tgz))\"</string>
 		</dict>
 		<key>MinimumVersion</key>
 		<string>1.0.0</string>
