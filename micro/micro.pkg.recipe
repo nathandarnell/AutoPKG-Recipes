@@ -101,7 +101,7 @@
                 <key>Arguments</key>
                 <dict>
                     <key>template_path</key>
-                    <string>PackageInfoTemplate</string>
+                    <string>%RECIPE_CACHE_DIR%/PackageInfoTemplate</string>
                     <key>version</key>
                     <string>%version%</string>
                     <key>pkgroot</key>
