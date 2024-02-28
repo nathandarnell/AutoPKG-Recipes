@@ -13,7 +13,7 @@ If you need more packages installing, you should make a copy of this recipe and 
    <key>Description</key>
    <string>Creates a Cisco Secure Client package with all modules enabled.</string>
    <key>Identifier</key>
-   <string>com.github.nathandarnell-recipes.pkg.CiscoSecureClient-AllModulesEnabled</string>
+   <string>com.github.nathandarnell-recipes.pkg.CiscoSecureClient-UmbrellaClientOnly</string>
    <key>ParentRecipe</key>
    <string>com.github.nathandarnell-recipes.download.CiscoSecureClient</string>
    <key>Input</key>
@@ -31,31 +31,31 @@ If you need more packages installing, you should make a copy of this recipe and 
       <key>UMBRELLA_USER_ID</key>
       <string>Put_text_into_AutoPkg_recipe_override</string>
       <key>CHOICE_VPN</key>
-      <string>1</string>
+      <string>0</string>
       <key>CHOICE_WEBSECURITY</key>
-      <string>1</string>
+      <string>0</string>
       <key>CHOICE_FIREAMP</key>
-      <string>1</string>
+      <string>0</string>
       <key>CHOICE_DART</key>
-      <string>1</string>
+      <string>0</string>
       <key>CHOICE_DUO</key>
-      <string>1</string>
+      <string>0</string>
       <key>CHOICE_POSTURE</key>
-      <string>1</string>
+      <string>0</string>
       <key>CHOICE_ISEPOSTURE</key>
-      <string>1</string>
+      <string>0</string>
       <key>CHOICE_NVM</key>
-      <string>1</string>
+      <string>0</string>
       <key>CHOICE_THOUSANDEYES</key>
-      <string>1</string>
+      <string>0</string>
       <key>CHOICE_UMBRELLA</key>
       <string>1</string>
       <key>CHOICE_ZEROTRUST</key>
-      <string>1</string>
+      <string>0</string>
       <key>DISABLE_VPN</key>
-      <string>false</string>
+      <string>true</string>
       <key>DISABLE_CUSTOMER_EXPERIENCE_FEEDBACK</key>
-      <string>false</string>
+      <string>true</string>
       <key>HIDE_UNINSTALLERS</key>
       <string>1</string>
       <key>VENDOR</key>
@@ -65,7 +65,7 @@ If you need more packages installing, you should make a copy of this recipe and 
       <key>SOFTWARETITLE2</key>
       <string>Client</string>
       <key>SOFTWARETITLE3</key>
-      <string>All_Modules_Enabled</string>
+      <string>Umbrella_Client_Only</string>
       <key>PKGID</key>
       <string>com.company.cisco.SecureClient</string>
    </dict>
