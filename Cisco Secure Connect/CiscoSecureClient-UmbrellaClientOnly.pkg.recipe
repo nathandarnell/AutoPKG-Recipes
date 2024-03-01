@@ -291,16 +291,19 @@ if [[ -n $3 ]]; then targetVolume=$3
 else targetVolume=""
 fi uninstallAppBundlePaths=(
 		"${targetVolume}/Applications/Cisco/Uninstall Cisco Secure Client – DART.app"
-		"${targetVolume}/Applications/Cisco/Uninstall Cisco Secure Client.app" ) exitCode=0
+		"${targetVolume}/Applications/Cisco/Uninstall Cisco Secure Client.app" )
+		exitCode=0
 
 
 # Run embedded installer with the Choice Changes XML
 if [[ -r "${packagePath}" &amp;&amp; -r "${choicesXML}" ]]; then
 	if ! /usr/sbin/installer -applyChoiceChangesXML "${choicesXML}" -pkg "${packagePath}" -target "$3"; then
-		echo "Installation of package \"${packagePath}\" failed." exitCode=1
+		echo "Installation of package \"${packagePath}\" failed." 
+		exitCode=1
 	fi
 else
-	echo "Package \"${packagePath}\" not found." exitCode=1
+	echo "Package \"${packagePath}\" not found." 
+	exitCode=1
 fi
 
 # Hide uninstallers
@@ -316,7 +319,8 @@ if [[ "${hideUninstallers}" -eq 1 || \
 			if /usr/bin/chflags hidden "${uninstallAppBundlePath}"; then
 				echo "Uninstaller app bundle \"${uninstallAppBundlePath}\" was hidden successfully."
 			else
-				echo "Uninstaller app bundle \"${uninstallAppBundlePath}\" was not hidden successfully." exitCode=1
+				echo "Uninstaller app bundle \"${uninstallAppBundlePath}\" was not hidden successfully." 
+				exitCode=1
 			fi
 		else
 			echo "Uninstaller app bundle \"${uninstallAppBundlePath}\" was not found and cannot be hidden."
