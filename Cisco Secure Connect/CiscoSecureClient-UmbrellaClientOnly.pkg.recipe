@@ -289,9 +289,11 @@ choicesXML="${0%/*}/InstallerChoices.xml"
 # Array of uninstall application bundles on the installer's target volume
 if [[ -n $3 ]]; then targetVolume=$3
 else targetVolume=""
-fi uninstallAppBundlePaths=(
+fi 
+uninstallAppBundlePaths=(
 		"${targetVolume}/Applications/Cisco/Uninstall Cisco Secure Client – DART.app"
-		"${targetVolume}/Applications/Cisco/Uninstall Cisco Secure Client.app" )
+		"${targetVolume}/Applications/Cisco/Uninstall Cisco Secure Client.app" 
+		)
 		exitCode=0
 
 
