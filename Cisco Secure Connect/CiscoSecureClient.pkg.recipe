@@ -280,8 +280,12 @@ If you need more packages installing, you should make a copy of this recipe and 
             <key>Arguments</key>
             <dict>
                <key>file_content</key>
-               <string>#!/bin/bash packagePath="${0%/*}/CiscoSecureClient.pkg" choicesXML="${0%/*}/InstallerChoices.xml"
-# Set value in AutoPkg override, default is 1 for "true" hideUninstallers="%HIDE_UNINSTALLERS%"
+               <string>#!/bin/bash
+               
+hideUninstallers="%HIDE_UNINSTALLERS%"
+packagePath="${0%/*}/CiscoSecureClient.pkg"
+choicesXML="${0%/*}/InstallerChoices.xml"
+
 # Array of uninstall application bundles on the installer's target volume
 if [[ -n $3 ]]; then targetVolume=$3
 else targetVolume=""
@@ -291,7 +295,7 @@ fi uninstallAppBundlePaths=(
 
 
 # Run embedded installer with the Choice Changes XML
-if [[ -r "${packagePath}" &amp;&amp; -r "${choicesXML}" ]]; then
+if [[ -r "${packagePath}" && -r "${choicesXML}" ]]; then
 	if ! /usr/sbin/installer -applyChoiceChangesXML "${choicesXML}" -pkg "${packagePath}" -target "$3"; then
 		echo "Installation of package \"${packagePath}\" failed." exitCode=1
 	fi
